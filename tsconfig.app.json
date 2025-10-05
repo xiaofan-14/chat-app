@@ -22,18 +22,20 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@common/*": ["common/*"],
+      "@main/*": ["main/*"],
+      "@renderer/*": ["renderer/*"],
+      "@locales/*": ["locales/*"]
     }
   },
   "include": [
     "forge.env.d.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "src/**/*.d.ts",
+    "renderer/**/*.ts",
+    "renderer/**/*.tsx",
+    "renderer/**/*.vue",
+    "renderer/**/*.d.ts",
     "renderer/App.vue",
     "main/index.ts",
     "renderer/index.ts",
