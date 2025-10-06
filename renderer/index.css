@@ -8,3 +8,10 @@ body {
   line-height: 1.6;
 }
 
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
