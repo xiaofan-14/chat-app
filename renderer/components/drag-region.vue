@@ -7,7 +7,7 @@
 </template>
 
 <style scoped>
-._placeholder{
-    opacity: 0;
+._placeholder {
+  opacity: 0;
 }
 </style>

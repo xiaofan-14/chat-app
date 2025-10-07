@@ -1,5 +1,5 @@
 export function useWindowManager() {
-  const isMaximized = ref(false)
+  const isMaximized = ref(false);
 
   function closeWindow() {
     window.api.closeWindow();
@@ -16,15 +16,17 @@ export function useWindowManager() {
   onMounted(async () => {
     await nextTick();
     isMaximized.value = await window.api.isWindowMaximized();
-    window.api.onWindowMaximized((_isMaximized: boolean) => isMaximized.value = _isMaximized);
-  })
+    window.api.onWindowMaximized(
+      (_isMaximized: boolean) => (isMaximized.value = _isMaximized),
+    );
+  });
 
   return {
     isMaximized,
     closeWindow,
     minimizeWindow,
-    maximizeWindow
-  }
-};
+    maximizeWindow,
+  };
+}
 
 export default useWindowManager;

@@ -29,8 +29,10 @@
 import './index.css';
 import { createApp } from 'vue';
 import App from './App.vue';
-import i18n from './i18n'
+import i18n from './i18n';
+import errorHandler from './utils/error-handler';
 
 createApp(App)
-    .use(i18n)
-    .mount('#app');
+  .use(i18n)
+  .use(errorHandler)
+  .mount('#app');

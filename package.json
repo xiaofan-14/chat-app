@@ -1,7 +1,7 @@
 {
-  "name": "electron-demo",
-  "productName": "electron-demo",
-  "version": "1.0.0",
+  "name": "chat-app",
+  "productName": "chat-app",
+  "version": "0.0.0",
   "description": "My Electron application description",
   "main": ".vite/build/index.js",
   "scripts": {
@@ -33,6 +33,7 @@
     "@types/node": "^24.0.8",
     "@vitejs/plugin-vue": "^6.0.0",
     "electron": "37.1.0",
+    "prettier": "3.6.2",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",
     "unplugin-auto-import": "^20.1.0",
@@ -40,6 +41,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^13.9.0",
+    "electron-log": "^5.4.3",
     "electron-squirrel-startup": "^1.0.1",
     "naive-ui": "^2.42.0",
     "pinia": "^3.0.3",
