@@ -1,16 +1,17 @@
-import type { WindowNames } from "@common/types";
+import type { WindowNames } from '@common/types';
 
-import { IPC_EVENTS } from "@common/constants";
+import { IPC_EVENTS } from '@common/constants';
 import {
   BrowserWindow,
   BrowserWindowConstructorOptions,
   ipcMain,
   IpcMainInvokeEvent,
+  nativeTheme,
   type IpcMainEvent,
-} from "electron";
-import { debounce } from "@common/utils";
+} from 'electron';
+import { debounce } from '@common/utils';
 
-import path from "node:path";
+import path from 'node:path';
 
 interface SizeOptions {
   width: number; // 窗口宽度
@@ -22,14 +23,16 @@ interface SizeOptions {
 }
 
 const SHARED_WINDOW_OPTIONS = {
-  titleBarStyle: "hidden",
-  title: "Chat",
+  titleBarStyle: 'hidden',
+  title: 'Chat',
+  darkTheme: nativeTheme.shouldUseDarkColors,
+  backgroundColor: nativeTheme.shouldUseDarkColors ? '#2C2C2C' : '#FFFFFF',
   webPreferences: {
     nodeIntegration: false, // 禁用 Node.js 集成，提高安全性
     contextIsolation: true, // 启用上下文隔离，防止渲染进程访问主进程 API
     sandbox: true, // 启用沙箱模式，进一步增强安全性
     backgroundThrottling: false,
-    preload: path.join(__dirname, "preload.js"),
+    preload: path.join(__dirname, 'preload.js'),
   },
 } as BrowserWindowConstructorOptions;
 
@@ -81,17 +84,14 @@ class WindowService {
     const updateWinStatus = debounce(
       () =>
         !window?.isDestroyed() &&
-        window?.webContents?.send(
-          IPC_EVENTS.MAXIMIZE_WINDOW + "back",
-          window?.isMaximized(),
-        ),
+        window?.webContents?.send(IPC_EVENTS.MAXIMIZE_WINDOW + 'back', window?.isMaximized()),
       80,
     );
-    window.once("closed", () => {
+    window.once('closed', () => {
       window?.destroy();
-      window?.removeListener("resize", updateWinStatus);
+      window?.removeListener('resize', updateWinStatus);
     });
-    window.on("resize", updateWinStatus);
+    window.on('resize', updateWinStatus);
     return this;
   }
 
@@ -99,13 +99,13 @@ class WindowService {
     // 检查是否存在开发服务器 URL，若存在则表示处于开发环境
     if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
       return window.loadURL(
-        `${MAIN_WINDOW_VITE_DEV_SERVER_URL}${"/html/" + (name === "main" ? "" : name)}`,
+        `${MAIN_WINDOW_VITE_DEV_SERVER_URL}${'/html/' + (name === 'main' ? '' : name)}`,
       );
     }
     window.loadFile(
       path.join(
         __dirname,
-        `../renderer/${MAIN_WINDOW_VITE_NAME}/html/${name === "main" ? "index" : name}.html`,
+        `../renderer/${MAIN_WINDOW_VITE_NAME}/html/${name === 'main' ? 'index' : name}.html`,
       ),
     );
   }
