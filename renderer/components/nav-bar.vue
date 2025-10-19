@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DragRegion from './drag-region.vue';
 import { Icon as IconifyIcon } from '@iconify/vue';
+import ThemeSwitcher from './theme-switcher.vue';
 
 defineOptions({ name: 'NavBar' });
 </script>
@@ -17,7 +18,7 @@ defineOptions({ name: 'NavBar' });
       </ul>
       <ul class="flex flex-col gap-2">
         <li class="sidebar-item no-drag cursor-pointer hover:text-primary-subtle">
-          <iconify-icon icon="material-symbols:dark-mode" width="24" height="24" />
+          <theme-switcher />
         </li>
         <li class="sidebar-item no-drag cursor-pointer hover:text-primary-subtle">
           <iconify-icon icon="material-symbols:settings-outline" width="24" height="24" />
